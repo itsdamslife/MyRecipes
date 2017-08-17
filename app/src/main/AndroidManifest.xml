@@ -20,7 +20,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".DisplayMessageActivity"
-                  android:label="Details of *"
                   android:parentActivityName=".MainActivity" >
 
                 <meta-data
