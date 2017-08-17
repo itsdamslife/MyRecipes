@@ -34,18 +34,34 @@ public class MainActivity extends AppCompatActivity {
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
         recyclerView.setAdapter(mAdapter);
+
+        recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), recyclerView, new RecyclerTouchListener.ClickListener() {
+            @Override
+            public void onClick(View view, int position) {
+                Recipe recipe = recipeList.get(position);
+                Intent intent = new Intent(getBaseContext(), DisplayMessageActivity.class);
+                intent.putExtra("extra_msg", recipe.getTitle());
+                startActivity(intent);
+            }
+
+            @Override
+            public void onLongClick(View view, int position) {
+
+            }
+        }));
 
         prepareRecipeData();
 
     }
-    public void sendMessage(View view) {
-        EditText etf = (EditText) findViewById(R.id.editText);
-        Intent intent = new Intent(this, DisplayMessageActivity.class);
-        String message = etf.getText().toString();
-        intent.putExtra("extra_msg", message);
-        startActivity(intent);
-    }
+//    public void sendMessage(View view) {
+//        EditText etf = (EditText) findViewById(R.id.editText);
+//        Intent intent = new Intent(this, DisplayMessageActivity.class);
+//        String message = etf.getText().toString();
+//        intent.putExtra("extra_msg", message);
+//        startActivity(intent);
+//    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -121,4 +137,5 @@ public class MainActivity extends AppCompatActivity {
 
         mAdapter.notifyDataSetChanged();
     }
+
 }
