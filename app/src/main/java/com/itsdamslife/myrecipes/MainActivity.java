@@ -10,7 +10,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.EditText;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view, int position) {
                 Recipe recipe = recipeList.get(position);
-                Intent intent = new Intent(getBaseContext(), DisplayMessageActivity.class);
+                Intent intent = new Intent(getBaseContext(), DisplayRecipeActivity.class);
                 intent.putExtra("extra_msg", recipe.getTitle());
                 startActivity(intent);
             }
@@ -55,13 +54,6 @@ public class MainActivity extends AppCompatActivity {
         prepareRecipeData();
 
     }
-//    public void sendMessage(View view) {
-//        EditText etf = (EditText) findViewById(R.id.editText);
-//        Intent intent = new Intent(this, DisplayMessageActivity.class);
-//        String message = etf.getText().toString();
-//        intent.putExtra("extra_msg", message);
-//        startActivity(intent);
-//    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
