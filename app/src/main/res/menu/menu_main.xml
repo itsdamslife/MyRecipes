@@ -2,6 +2,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.itsdamslife.myrecipes.MainActivity">
+
+    <item
+        android:id="@+id/action_add_new_recipe"
+        android:orderInCategory="99"
+        android:title="@string/action_add_new_recipe"
+        app:showAsAction="never" />
+
     <item
         android:id="@+id/action_settings"
         android:orderInCategory="100"
