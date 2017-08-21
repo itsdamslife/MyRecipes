@@ -7,6 +7,7 @@ import android.text.method.ScrollingMovementMethod;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,6 +17,7 @@ public class AddNewRecipeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_new_recipe);
+
     }
 
     @Override
@@ -33,19 +35,31 @@ public class AddNewRecipeActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == R.id.action_save_new_recipe) {
-
-            Context context = getApplicationContext();
-            CharSequence text = "Save triggered!";
-            int duration = Toast.LENGTH_LONG;
-
-            Toast toast = Toast.makeText(context, text, duration);
-            toast.show();
-
+            this.saveRecipe();
             return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
 
+    private void saveRecipe() {
+
+        EditText title = (EditText)findViewById(R.id.recipeTitle);
+        EditText ingredients = (EditText)findViewById(R.id.ingredientsEditTextView);
+        EditText procedure = (EditText)findViewById(R.id.procedureEditTextView);
+
+        if(title.getText().length() > 0 && ingredients.getText().length() > 0 && procedure.getText().length() > 0) {
+            this.showToast("Saved!!");
+        } else {
+            this.showToast("NOTHING TO SAVE!!");
+        }
+    }
+
+    private void showToast(String toastText) {
+        Context context = getApplicationContext();
+        int duration = Toast.LENGTH_LONG;
+        Toast toast = Toast.makeText(context, toastText, duration);
+        toast.show();
+    }
 
 }
